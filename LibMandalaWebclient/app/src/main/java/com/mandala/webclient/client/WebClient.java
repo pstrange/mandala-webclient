@@ -11,7 +11,9 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by israel on 3/04/16.
@@ -62,9 +64,11 @@ public class WebClient {
                 builder.delete(body);
             }
 
-        for(Map.Entry<String, String> entry : requestInterface.getHeaders().entrySet())
-            builder.addHeader(entry.getKey(), entry.getValue());
-
+        Iterator it = requestInterface.getHeaders().entrySet().iterator();
+        while(it.hasNext()) {
+            Map.Entry me = (Map.Entry) it.next();
+            builder.addHeader(me.getKey().toString(), me.getValue().toString());
+        }
         Response response = client.newCall(builder.build()).execute();
         return response;
     }
