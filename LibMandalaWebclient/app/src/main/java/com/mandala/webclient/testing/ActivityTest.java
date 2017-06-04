@@ -23,12 +23,14 @@ import com.squareup.okhttp.Response;
 public class ActivityTest extends AppCompatActivity {
 
     LinearLayout layItems = null;
+    TextView textStatus = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
         layItems = (LinearLayout) findViewById(R.id.lay_items);
+        textStatus = (TextView) findViewById(R.id.text_status);
 
         WebClient.getInstance().setContext(this);
         WebClient.getInstance().setDebugMode(true);
@@ -41,9 +43,11 @@ public class ActivityTest extends AppCompatActivity {
                 Dispacher.sendRequest(itmView.findViewById(R.id.loader), new RequestGenres(ResponseGenre.class){
                     @Override
                     public void onComplete(Response response, ResponseGenre content) {
+                        textStatus.setText(Dispacher.getStatus());
                         ((TextView)itmView.findViewById(R.id.text_display)).setText("Request "+content.toString()+" done");
                     }
                 });
+                textStatus.setText(Dispacher.getStatus());
             }
         });
     }
