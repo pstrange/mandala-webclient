@@ -1,4 +1,4 @@
-package com.mandala.webclient.client;
+package com.mandala.webclient.utils;
 
 import com.squareup.okhttp.OkHttpClient;
 
@@ -14,7 +14,8 @@ import javax.net.ssl.X509TrustManager;
  * Created by just_ on 01/04/2017.
  */
 
-public class TrustManager {
+public class DefaultTrustManager {
+
     private static X509TrustManager getX509TrustManager(){
         return new X509TrustManager() {
             @Override

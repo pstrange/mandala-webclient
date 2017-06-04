@@ -7,9 +7,7 @@ import com.squareup.okhttp.Response;
  */
 
 public interface WebClientListener<T>{
-
     void onComplete(Response response, T content);
     void onError(Exception e, String message);
     void onNetworkError();
-
 }
