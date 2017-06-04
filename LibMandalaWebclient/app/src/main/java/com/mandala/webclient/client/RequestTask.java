@@ -59,10 +59,10 @@ public class RequestTask extends AsyncTask<Void, Void, Object> {
     @Override
     protected void onPostExecute(Object response) {
         hideLoader();
-        if(request.isCanceled()) {
-            reportToDispacher();
+        reportToDispacher();
+        if(request.isCanceled())
             return;
-        }
+
         if(response instanceof Exception) {
             Exception ex = (Exception)response;
             request.onError(ex, ex.getMessage());
@@ -70,7 +70,6 @@ public class RequestTask extends AsyncTask<Void, Void, Object> {
             ResponseObject result = (ResponseObject)response;
             request.onComplete(result.response, result.content);
         }
-        reportToDispacher();
     }
 
     public void showLoader(){
