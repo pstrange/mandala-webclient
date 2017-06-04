@@ -16,32 +16,26 @@ import java.util.Map;
  * Created by just_ on 01/04/2017.
  */
 
-public abstract class RequestInterface<T> implements WebClientListener{
+public abstract class RequestInterface<T> implements WebClientListener<T>{
 
     private Type entityType;
     private WebClientListener webClientListener;
 
-    public void setResponseType(Class<T> entityClass){
+    public RequestInterface(Class<T> entityClass){
         entityType = TypeToken.get(entityClass).getType();
-    }
-
-    public void setResponseType(Type entityType){
-        this.entityType = entityType;
     }
 
     public String getUrl(){return "";}
     public Map<String, String> getHeaders(){return new HashMap<>();}
     public RequestBody getBody() throws JSONException {return new FormEncodingBuilder().build();}
     public WebClient.RequestType getRequestMethod(){return WebClient.RequestType.GET;}
-    public boolean runSSLimplementation(){return false;}
-
     public GenericParse getParse(){return new GsonParser(entityType);}
 
     public void setListener(WebClientListener webClientListener){
         this.webClientListener = webClientListener;
     }
 
-    public void onComplete(Response response, Object content){
+    public void onComplete(Response response, T content){
         if (webClientListener != null)
             webClientListener.onComplete(response, content);
     }

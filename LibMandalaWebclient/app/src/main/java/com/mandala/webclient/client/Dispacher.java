@@ -29,7 +29,6 @@ public class Dispacher {
 
     private static class RequestTask extends AsyncTask<Void, Void, Object> {
 
-        private WebClient webClient;
         private RequestInterface request;
         private Dialog dialogLoader = null;
         private View viewLoader = null;
@@ -50,7 +49,7 @@ public class Dispacher {
 
         @Override
         protected void onPreExecute() {
-            if(WebClient.isConnected()){
+            if(WebClient.getInstance().isConnected()){
                 showLoader();
             }else{
                 request.onNetworkError();
@@ -60,7 +59,8 @@ public class Dispacher {
 
         @Override
         protected Object doInBackground(Void... voids) {
-            return getWebClient().dispatch(request);
+            WebClient webClient = WebClient.getInstance();
+            return webClient.dispatch(request);
         }
 
         @Override
@@ -73,11 +73,6 @@ public class Dispacher {
                 ResponseObject result = (ResponseObject)response;
                 request.onComplete(result.response, result.content);
             }
-        }
-
-        private WebClient getWebClient(){
-            webClient = new WebClient();
-            return webClient;
         }
 
         public void showLoader(){
