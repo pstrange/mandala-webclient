@@ -14,14 +14,8 @@ import java.util.Queue;
  */
 public class Dispacher {
 
-    private static int MAX_THREADS = 2;
     private static RequestTask activeTask = null;
-    private static Queue<String> queueMax = new LinkedList<>();
     private static Queue<RequestTask> queue = new LinkedList<>();
-
-    public static void setMaxThreads(int maxThreads) {
-        MAX_THREADS = maxThreads;
-    }
 
     public static void sendRequest(RequestInterface request){
         RequestTask requestTask = new RequestTask(request);
@@ -51,8 +45,7 @@ public class Dispacher {
     }
 
     private static void addToQueue(RequestTask task){
-        if(queueMax.size() <= MAX_THREADS){
-            queueMax.add(String.valueOf(task.hashCode()));
+        if(activeTask == null){
             queue.add(task);
             executeQueue();
         }else
@@ -60,7 +53,6 @@ public class Dispacher {
     }
 
     private static void executeQueue(){
-        queueMax.poll();
         activeTask = queue.poll();
         if(activeTask != null){
             if(!activeTask.getRequest().isCanceled())
@@ -74,10 +66,12 @@ public class Dispacher {
         if(queue.size() > 0)
             queue.clear();
 
-        if(queueMax.size() > 0)
-            queueMax.clear();
-
         if(activeTask != null)
             activeTask.getRequest().setCancel(true);
     }
+
+    public static String getStatus(){
+        return "active: "+String.valueOf(activeTask!=null)+" queue: "+queue.size();
+    }
+
 }
