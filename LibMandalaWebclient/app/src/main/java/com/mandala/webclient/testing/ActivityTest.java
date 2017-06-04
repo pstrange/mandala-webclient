@@ -4,7 +4,10 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mandala.webclient.R;
@@ -19,24 +22,34 @@ import com.squareup.okhttp.Response;
 
 public class ActivityTest extends AppCompatActivity {
 
-    ProgressDialog progressDialog;
+    LinearLayout layItems = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
-        progressDialog = new ProgressDialog(this);
-        WebClient.init(this);
+        layItems = (LinearLayout) findViewById(R.id.lay_items);
+
+        WebClient.getInstance().setContext(this);
+        WebClient.getInstance().setDebugMode(true);
+
         findViewById(R.id.button_call).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Dispacher.sendRequest(progressDialog, new RequestGenres(){
+                final View itmView = inflateItem();
+                layItems.addView(itmView);
+                Dispacher.sendRequest(itmView.findViewById(R.id.loader), new RequestGenres(ResponseGenre.class){
                     @Override
                     public void onComplete(Response response, ResponseGenre content) {
-                        Toast.makeText(getApplicationContext(), content.toString(), Toast.LENGTH_SHORT).show();
+                        ((TextView)itmView.findViewById(R.id.text_display)).setText("Request "+content.toString()+" done");
                     }
                 });
             }
         });
+    }
+
+    public View inflateItem(){
+        View view = LayoutInflater.from(this).inflate(R.layout.layout_request, null);
+        return view;
     }
 }
