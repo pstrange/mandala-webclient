@@ -20,6 +20,7 @@ public abstract class RequestInterface<T> implements WebClientListener<T>{
 
     private Type entityType;
     private WebClientListener webClientListener;
+    private boolean isCanceled = false;
 
     public RequestInterface(Class<T> entityClass){
         entityType = TypeToken.get(entityClass).getType();
@@ -30,6 +31,14 @@ public abstract class RequestInterface<T> implements WebClientListener<T>{
     public RequestBody getBody() throws JSONException {return new FormEncodingBuilder().build();}
     public WebClient.RequestType getRequestMethod(){return WebClient.RequestType.GET;}
     public GenericParse getParse(){return new GsonParser(entityType);}
+
+    public void setCancel(boolean canceled) {
+        isCanceled = canceled;
+    }
+
+    public boolean isCanceled() {
+        return isCanceled;
+    }
 
     public void setListener(WebClientListener webClientListener){
         this.webClientListener = webClientListener;
