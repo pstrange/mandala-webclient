@@ -62,7 +62,7 @@ public class Dispacher {
         }
     }
 
-    private static void cancelRequest(RequestInterface request){
+    public static void cancelRequest(RequestInterface request){
         request.setCancel(true);
         for (RequestTask task : queue){
             task.getRequest().equals(request);
@@ -71,7 +71,7 @@ public class Dispacher {
     }
 
 
-    private static void cancelAllRequest(){
+    public static void cancelAllRequest(){
         if(queue.size() > 0)
             queue.clear();
 
