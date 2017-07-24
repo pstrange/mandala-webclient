@@ -13,8 +13,10 @@ import android.widget.Toast;
 import com.mandala.webclient.R;
 import com.mandala.webclient.client.Dispacher;
 import com.mandala.webclient.client.WebClient;
+import com.mandala.webclient.interfaces.ClientConfigs;
 import com.mandala.webclient.interfaces.RequestConfigs;
 import com.mandala.webclient.testing.model.ResponseGenre;
+import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
@@ -36,10 +38,16 @@ public class ActivityTest extends AppCompatActivity {
 
         WebClient.getInstance().setContext(this);
         WebClient.getInstance().setDebugMode(true);
-        WebClient.getInstance().setRequestConfigs(new RequestConfigs() {
+        WebClient.getInstance().setClientConfigs(new ClientConfigs<OkHttpClient>() {
+            @Override
+            public void configClient(OkHttpClient client) {
+                //Instala certificados ssl
+            }
+        });
+        WebClient.getInstance().setRequestConfigs(new RequestConfigs<Request.Builder>() {
             @Override
             public void configRequest(Request.Builder builder) {
-                builder.addHeader("auth", "qiygilauyfkuyfukyfk");
+                //Agrega cosas en el header de cada peticion por ejemplo tokens o cookies
             }
         });
 
