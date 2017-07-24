@@ -64,10 +64,8 @@ public class Dispacher {
 
     public static void cancelRequest(RequestInterface request){
         request.setCancel(true);
-        for (RequestTask task : queue){
-            task.getRequest().equals(request);
-            queue.remove(task);
-        }
+        if(queue.contains(request))
+            queue.remove(request);
     }
 
 
