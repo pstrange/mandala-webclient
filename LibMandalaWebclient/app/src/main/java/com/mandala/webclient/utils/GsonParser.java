@@ -1,6 +1,7 @@
-package com.mandala.webclient.interfaces;
+package com.mandala.webclient.utils;
 
 import com.google.gson.Gson;
+import com.mandala.webclient.interfaces.GenericParse;
 
 import org.json.JSONException;
 
@@ -10,7 +11,7 @@ import java.lang.reflect.Type;
  * Created by just_ on 01/05/2017.
  */
 
-public class GsonParser implements GenericParse{
+public class GsonParser implements GenericParse {
 
     protected Type entityType;
 

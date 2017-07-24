@@ -6,7 +6,6 @@ import com.mandala.webclient.interfaces.ClientConfigs;
 import com.mandala.webclient.interfaces.RequestConfigs;
 import com.mandala.webclient.interfaces.RequestInterface;
 import com.mandala.webclient.model.ResponseObject;
-import com.mandala.webclient.utils.DefaultTrustManager;
 import com.mandala.webclient.utils.LoggingInterceptor;
 import com.mandala.webclient.utils.NetworkUtils;
 import com.squareup.okhttp.OkHttpClient;
@@ -31,17 +30,13 @@ public class WebClient {
     }
 
     private boolean DEBUG_MODE = true;
-    private boolean RUN_DEFAULT_SSLCONFIGS = false;
     private Context mContext = null;
-    private ClientConfigs mClientConfigs = new ClientConfigs() {
+    private ClientConfigs mClientConfigs = new ClientConfigs<OkHttpClient>() {
         @Override
-        public void configClient(OkHttpClient client) {
-            if(RUN_DEFAULT_SSLCONFIGS)
-                DefaultTrustManager.addCertificades(client);
-        }
+        public void configClient(OkHttpClient client) {}
     };
 
-    private RequestConfigs mRequestConfigs = new RequestConfigs() {
+    private RequestConfigs mRequestConfigs = new RequestConfigs<Request.Builder>() {
         @Override public void configRequest(Request.Builder builder) {}
     };
 
@@ -51,10 +46,6 @@ public class WebClient {
 
     public void setDebugMode(Boolean isDebug){
         DEBUG_MODE = isDebug;
-    }
-
-    public void setRunDefaultSslConfigs(Boolean runDefaultConfigs){
-        RUN_DEFAULT_SSLCONFIGS = runDefaultConfigs;
     }
 
     public void setClientConfigs(ClientConfigs clientConfigs){
