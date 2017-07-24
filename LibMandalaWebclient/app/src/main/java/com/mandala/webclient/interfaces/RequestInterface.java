@@ -2,6 +2,7 @@ package com.mandala.webclient.interfaces;
 
 import com.google.gson.reflect.TypeToken;
 import com.mandala.webclient.client.WebClient;
+import com.mandala.webclient.utils.GsonParser;
 import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
