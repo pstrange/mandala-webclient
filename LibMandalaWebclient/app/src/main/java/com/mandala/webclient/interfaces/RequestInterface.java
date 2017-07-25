@@ -2,10 +2,9 @@ package com.mandala.webclient.interfaces;
 
 import com.google.gson.reflect.TypeToken;
 import com.mandala.webclient.client.WebClient;
+import com.mandala.webclient.model.PayloadBody;
+import com.mandala.webclient.model.ResponseInfo;
 import com.mandala.webclient.utils.GsonParser;
-import com.squareup.okhttp.FormEncodingBuilder;
-import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.Response;
 
 import org.json.JSONException;
 
@@ -29,7 +28,7 @@ public abstract class RequestInterface<T> implements WebClientListener<T>{
 
     public String getUrl(){return "";}
     public Map<String, String> getHeaders(){return new HashMap<>();}
-    public RequestBody getBody() throws JSONException {return new FormEncodingBuilder().build();}
+    public PayloadBody getPayload() throws JSONException { return new PayloadBody(new HashMap<String, Object>());}
     public WebClient.RequestType getRequestMethod(){return WebClient.RequestType.GET;}
     public GenericParse getParse(){return new GsonParser(entityType);}
 
@@ -45,7 +44,7 @@ public abstract class RequestInterface<T> implements WebClientListener<T>{
         this.webClientListener = webClientListener;
     }
 
-    public void onComplete(Response response, T content){
+    public void onComplete(ResponseInfo response, T content){
         if (webClientListener != null)
             webClientListener.onComplete(response, content);
     }
