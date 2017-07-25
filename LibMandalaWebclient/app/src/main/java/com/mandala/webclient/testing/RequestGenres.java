@@ -7,10 +7,10 @@ import com.mandala.webclient.testing.model.ResponseGenre;
  * Created by just_ on 01/05/2017.
  */
 
-public class RequestGenres extends RequestInterface<ResponseGenre> {
+public class RequestGenres extends RequestInterface<ResponseGenre>{
 
-    public RequestGenres(Class mclass){
-        super(mclass);
+    public RequestGenres(){
+        super(ResponseGenre.class);
     }
 
     @Override

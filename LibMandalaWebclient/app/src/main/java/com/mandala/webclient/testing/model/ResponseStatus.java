@@ -6,7 +6,7 @@ import com.google.gson.annotations.Expose;
  * Created by just_ on 01/05/2017.
  */
 
-public class ResponseInfo {
+public class ResponseStatus {
 
     @Expose
     private boolean success;

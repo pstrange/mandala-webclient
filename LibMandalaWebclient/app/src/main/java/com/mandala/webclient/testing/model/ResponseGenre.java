@@ -11,17 +11,17 @@ import java.util.List;
 public class ResponseGenre {
 
     @Expose
-    private ResponseInfo response_info;
+    private ResponseStatus response_info;
     @Expose
     private PageInfo page_info;
     @Expose
     private List<Genre> genres;
 
-    public ResponseInfo getResponse_info() {
+    public ResponseStatus getResponse_info() {
         return response_info;
     }
 
-    public void setResponse_info(ResponseInfo response_info) {
+    public void setResponse_info(ResponseStatus response_info) {
         this.response_info = response_info;
     }
 
