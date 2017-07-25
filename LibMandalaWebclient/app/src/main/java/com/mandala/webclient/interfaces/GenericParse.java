@@ -5,7 +5,5 @@ package com.mandala.webclient.interfaces;
  */
 
 public interface GenericParse{
-
     <T> T parse(String response) throws Exception;
-
 }

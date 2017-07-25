@@ -5,6 +5,7 @@ import android.content.Context;
 import com.mandala.webclient.interfaces.ClientConfigs;
 import com.mandala.webclient.interfaces.RequestConfigs;
 import com.mandala.webclient.interfaces.RequestInterface;
+import com.mandala.webclient.model.ResponseInfo;
 import com.mandala.webclient.model.ResponseObject;
 import com.mandala.webclient.utils.LoggingInterceptor;
 import com.mandala.webclient.utils.NetworkUtils;
@@ -71,7 +72,7 @@ public class WebClient {
         return client;
     }
 
-    private Response makeRequest(RequestInterface requestInterface) throws Exception {
+    private ResponseInfo makeRequest(RequestInterface requestInterface) throws Exception {
         OkHttpClient client = getOkHttpClient();
 
         getClientConfigs().configClient(client);
@@ -79,13 +80,13 @@ public class WebClient {
         getRequestConfigs().configRequest(builder);
 
             if(requestInterface.getRequestMethod().equals(RequestType.POST)) {
-                RequestBody body = requestInterface.getBody();
+                RequestBody body = requestInterface.getPayload().getBody();
                 builder.post(body);
             }else if(requestInterface.getRequestMethod().equals(RequestType.PUT)) {
-                RequestBody body = requestInterface.getBody();
+                RequestBody body = requestInterface.getPayload().getBody();
                 builder.put(body);
             }else if(requestInterface.getRequestMethod().equals(RequestType.DELETE)){
-                RequestBody body = requestInterface.getBody();
+                RequestBody body = requestInterface.getPayload().getBody();
                 builder.delete(body);
             }
 
@@ -95,13 +96,13 @@ public class WebClient {
             builder.addHeader(me.getKey().toString(), me.getValue().toString());
         }
         Response response = client.newCall(builder.build()).execute();
-        return response;
+        return new ResponseInfo(response);
     }
 
     public Object dispatch(final RequestInterface requestInterface){
         try {
-            Response response = makeRequest(requestInterface);
-            String responseString = response.body().string();
+            ResponseInfo response = makeRequest(requestInterface);
+            String responseString = response.getStringBody();
             Object parsedContent = requestInterface.getParse().parse(responseString);
             ResponseObject responseObj = new ResponseObject();
             responseObj.response = response;
