@@ -36,7 +36,6 @@ public class ActivityTest extends AppCompatActivity {
         textStatus = (TextView) findViewById(R.id.text_status);
 
         WebClient.getInstance().setContext(this);
-        WebClient.getInstance().setDebugMode(true);
         WebClient.getInstance().setClientConfigs(new ClientConfigs<OkHttpClient.Builder>() {
             @Override
             public void configClient(OkHttpClient.Builder client) {
