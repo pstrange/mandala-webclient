@@ -37,9 +37,9 @@ public class ActivityTest extends AppCompatActivity {
 
         WebClient.getInstance().setContext(this);
         WebClient.getInstance().setDebugMode(true);
-        WebClient.getInstance().setClientConfigs(new ClientConfigs<OkHttpClient>() {
+        WebClient.getInstance().setClientConfigs(new ClientConfigs<OkHttpClient.Builder>() {
             @Override
-            public void configClient(OkHttpClient client) {
+            public void configClient(OkHttpClient.Builder client) {
                 //Instala certificados ssl
             }
         });
