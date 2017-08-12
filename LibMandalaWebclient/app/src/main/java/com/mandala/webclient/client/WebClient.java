@@ -9,13 +9,14 @@ import com.mandala.webclient.model.ResponseInfo;
 import com.mandala.webclient.model.ResponseObject;
 import com.mandala.webclient.utils.LoggingInterceptor;
 import com.mandala.webclient.utils.NetworkUtils;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.Response;
 
 import java.util.Iterator;
 import java.util.Map;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 /**
  * Created by israel on 3/04/16.

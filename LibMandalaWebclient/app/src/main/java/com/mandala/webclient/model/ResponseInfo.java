@@ -1,8 +1,9 @@
 package com.mandala.webclient.model;
 
-import com.squareup.okhttp.Response;
 
 import java.io.IOException;
+
+import okhttp3.Response;
 
 /**
  * Created by israel on 25/07/17.
@@ -10,15 +11,15 @@ import java.io.IOException;
 
 public class ResponseInfo implements com.mandala.webclient.interfaces.Response<Response> {
 
-    com.squareup.okhttp.Response response;
+    okhttp3.Response response;
     private String stringResponse = null;
 
-    public ResponseInfo(com.squareup.okhttp.Response response){
+    public ResponseInfo(okhttp3.Response response){
         this.response = response;
     }
 
     @Override
-    public com.squareup.okhttp.Response getResponse() {
+    public okhttp3.Response getResponse() {
         return response;
     }
 
