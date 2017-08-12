@@ -2,7 +2,7 @@ package com.mandala.webclient.interfaces;
 
 import com.google.gson.reflect.TypeToken;
 import com.mandala.webclient.client.WebClient;
-import com.mandala.webclient.model.PayloadBody;
+import com.mandala.webclient.model.BodyRequest;
 import com.mandala.webclient.model.ResponseInfo;
 import com.mandala.webclient.utils.GsonParser;
 
@@ -28,7 +28,7 @@ public abstract class RequestInterface<T> implements WebClientListener<T>{
 
     public String getUrl(){return "";}
     public Map<String, String> getHeaders(){return new HashMap<>();}
-    public PayloadBody getPayload() throws JSONException { return new PayloadBody(new HashMap<String, Object>());}
+    public BodyRequest getPayload() throws JSONException { return new BodyRequest(new HashMap<String, Object>());}
     public WebClient.RequestType getRequestMethod(){return WebClient.RequestType.GET;}
     public GenericParse getParse(){return new GsonParser(entityType);}
 
