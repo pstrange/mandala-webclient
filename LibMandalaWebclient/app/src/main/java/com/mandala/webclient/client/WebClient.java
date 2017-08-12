@@ -67,16 +67,15 @@ public class WebClient {
     }
 
     public OkHttpClient getOkHttpClient(){
-        OkHttpClient client = new OkHttpClient();
+        OkHttpClient.Builder client = new OkHttpClient.Builder();
+        getClientConfigs().configClient(client);
         if(DEBUG_MODE)
-            client.interceptors().add(new LoggingInterceptor());
-        return client;
+            client.addInterceptor(new LoggingInterceptor());
+        return client.build();
     }
 
     private ResponseInfo makeRequest(RequestInterface requestInterface) throws Exception {
         OkHttpClient client = getOkHttpClient();
-
-        getClientConfigs().configClient(client);
         Request.Builder builder = new Request.Builder().url(requestInterface.getUrl());
         getRequestConfigs().configRequest(builder);
 
