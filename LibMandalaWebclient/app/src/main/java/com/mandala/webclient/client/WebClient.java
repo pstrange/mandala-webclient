@@ -2,6 +2,7 @@ package com.mandala.webclient.client;
 
 import android.content.Context;
 
+import com.mandala.webclient.BuildConfig;
 import com.mandala.webclient.interfaces.ClientConfigs;
 import com.mandala.webclient.interfaces.RequestConfigs;
 import com.mandala.webclient.interfaces.RequestInterface;
@@ -31,7 +32,6 @@ public class WebClient {
         return instance;
     }
 
-    private boolean DEBUG_MODE = true;
     private Context mContext = null;
     private ClientConfigs mClientConfigs = new ClientConfigs<OkHttpClient>() {
         @Override
@@ -44,10 +44,6 @@ public class WebClient {
 
     public void setContext(Context context){
         mContext = context;
-    }
-
-    public void setDebugMode(Boolean isDebug){
-        DEBUG_MODE = isDebug;
     }
 
     public void setClientConfigs(ClientConfigs clientConfigs){
@@ -69,7 +65,7 @@ public class WebClient {
     public OkHttpClient getOkHttpClient(){
         OkHttpClient.Builder client = new OkHttpClient.Builder();
         getClientConfigs().configClient(client);
-        if(DEBUG_MODE)
+        if(BuildConfig.DEBUG)
             client.addInterceptor(new LoggingInterceptor());
         return client.build();
     }
