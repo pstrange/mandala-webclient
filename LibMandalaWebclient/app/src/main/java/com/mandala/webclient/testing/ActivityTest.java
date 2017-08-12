@@ -15,8 +15,9 @@ import com.mandala.webclient.interfaces.ClientConfigs;
 import com.mandala.webclient.interfaces.RequestConfigs;
 import com.mandala.webclient.model.ResponseInfo;
 import com.mandala.webclient.testing.model.ResponseGenre;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 
 /**
  * Created by just_ on 01/05/2017.
