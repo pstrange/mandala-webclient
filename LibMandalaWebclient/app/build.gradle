@@ -1,30 +1,6 @@
 //apply plugin: 'com.android.application'
 apply plugin: 'com.android.library'
 
-//ext {
-//    bintrayRepo = 'android-libs'
-//    bintrayName = 'webclient'
-//
-//    publishedGroupId = 'com.mandala.code'
-//    libraryName = 'Mandala Webclient'
-//    artifact = 'webclient'
-//
-//    libraryDescription = 'Librería para facilitar las operaciones con APIs.'
-//
-//    siteUrl = 'https://bitbucket.org/israel_cortes/lib-mandalawebclient'
-//    gitUrl = 'https://israel_cortes@bitbucket.org/israel_cortes/lib-mandalawebclient.git'
-//
-//    libraryVersion = '1.0.0'
-//
-//    developerId = 'mandalacode'
-//    developerName = 'Israel Cortes'
-//    developerEmail = 'sprocdogg@gmail.com'
-//
-//    licenseName = 'The Apache Software License, Version 2.0'
-//    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-//    allLicenses = ["Apache-2.0"]
-//}
-
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.1"
@@ -52,10 +28,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.0.1'
-    compile 'com.squareup.okhttp:okhttp:2.5.0'
+    compile 'com.squareup.okhttp3:mockwebserver:3.8.1'
     compile 'com.google.code.gson:gson:2.8.0'
     testCompile 'junit:junit:4.12'
 }
-
-//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
