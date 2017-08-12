@@ -1,7 +1,9 @@
 package com.mandala.webclient.model;
 
+import com.google.gson.Gson;
 import com.mandala.webclient.interfaces.Payload;
 import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.RequestBody;
 
 import java.util.Iterator;
@@ -11,11 +13,20 @@ import java.util.Map;
  * Created by israel on 25/07/17.
  */
 
-public class PayloadBody implements Payload<RequestBody> {
+public class BodyRequest implements Payload<RequestBody> {
 
-    RequestBody requestBody;
+    protected RequestBody requestBody;
 
-    public PayloadBody(Map<String, Object> params){
+    public BodyRequest(Object object){
+        Gson gson = new Gson();
+        requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), gson.toJson(object));
+    }
+
+    public BodyRequest(String stringBody, String mediatype){
+        requestBody = RequestBody.create(MediaType.parse(mediatype), stringBody);
+    }
+
+    public BodyRequest(Map<String, Object> params){
         if(params.size() == 0)
             requestBody = new FormEncodingBuilder().build();
         else {
