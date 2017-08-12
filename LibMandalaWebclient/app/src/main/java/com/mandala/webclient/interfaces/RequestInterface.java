@@ -40,7 +40,7 @@ public abstract class RequestInterface<T> implements WebClientListener<T>{
         return isCanceled;
     }
 
-    public void setListener(WebClientListener webClientListener){
+    public void setListener(WebClientListener<T> webClientListener){
         this.webClientListener = webClientListener;
     }
 
