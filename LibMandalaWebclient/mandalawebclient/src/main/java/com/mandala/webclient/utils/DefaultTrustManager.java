@@ -1,6 +1,4 @@
-package com.mandala.webclient.client;
-
-import com.squareup.okhttp.OkHttpClient;
+package com.mandala.webclient.utils;
 
 import java.security.cert.CertificateException;
 
@@ -10,11 +8,14 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.X509TrustManager;
 
+import okhttp3.OkHttpClient;
+
 /**
  * Created by just_ on 01/04/2017.
  */
 
-public class TrustManager {
+public class DefaultTrustManager {
+
     private static X509TrustManager getX509TrustManager(){
         return new X509TrustManager() {
             @Override
@@ -37,7 +38,7 @@ public class TrustManager {
         };
     }
 
-    public static void addCertificades(OkHttpClient client){
+    public static void addCertificades(OkHttpClient.Builder client){
         try {
             // Create a trust manager that does not validate certificate chains
             final javax.net.ssl.TrustManager[] trustAllCerts = new javax.net.ssl.TrustManager[]{getX509TrustManager()};
@@ -46,8 +47,7 @@ public class TrustManager {
             sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
             // Create an ssl socket factory with our all-trusting manager
             final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
-            client.setSslSocketFactory(sslSocketFactory);
-            client.setHostnameVerifier(getHostnameVerifier());
+            client.sslSocketFactory(sslSocketFactory, getX509TrustManager());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
