@@ -8,10 +8,13 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.mandala.webclient.R;
+import com.mandala.test.R;
 import com.mandala.test.model.ResponseGenre;
 import com.mandala.webclient.client.Dispacher;
 import com.mandala.webclient.client.WebClient;
+import com.mandala.webclient.interfaces.ClientConfigs;
+import com.mandala.webclient.interfaces.RequestConfigs;
+import com.mandala.webclient.model.ResponseInfo;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
