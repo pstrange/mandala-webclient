@@ -33,6 +33,8 @@ public class WebClient {
     }
 
     private Context mContext = null;
+    private Boolean activeLog = true;
+
     private ClientConfigs mClientConfigs = new ClientConfigs<OkHttpClient>() {
         @Override
         public void configClient(OkHttpClient client) {}
@@ -44,6 +46,10 @@ public class WebClient {
 
     public void setContext(Context context){
         mContext = context;
+    }
+
+    public void setActiveLog(Boolean activeLog) {
+        this.activeLog = activeLog;
     }
 
     public void setClientConfigs(ClientConfigs clientConfigs){
@@ -65,7 +71,7 @@ public class WebClient {
     public OkHttpClient getOkHttpClient(){
         OkHttpClient.Builder client = new OkHttpClient.Builder();
         getClientConfigs().configClient(client);
-        if(BuildConfig.DEBUG)
+        if(activeLog)
             client.addInterceptor(new LoggingInterceptor());
         return client.build();
     }

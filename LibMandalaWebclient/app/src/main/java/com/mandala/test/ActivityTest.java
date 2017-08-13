@@ -36,6 +36,7 @@ public class ActivityTest extends AppCompatActivity {
         textStatus = (TextView) findViewById(R.id.text_status);
 
         WebClient.getInstance().setContext(this);
+        WebClient.getInstance().setActiveLog(BuildConfig.DEBUG);
         WebClient.getInstance().setClientConfigs(new ClientConfigs<OkHttpClient.Builder>() {
             @Override
             public void configClient(OkHttpClient.Builder client) {
@@ -44,8 +45,8 @@ public class ActivityTest extends AppCompatActivity {
         });
         WebClient.getInstance().setRequestConfigs(new RequestConfigs<Request.Builder>() {
             @Override
-            public void configRequest(Request.Builder builder) {
-                //Agrega cosas en el header de cada peticion por ejemplo tokens o cookies
+            public void configRequest(Request.Builder request) {
+                //Agrega parametros o confuguraciones de cada peticion por ejemplo tokens o cookies
             }
         });
 
