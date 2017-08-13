@@ -1,7 +1,7 @@
-package com.mandala.webclient.testing;
+package com.mandala.test;
 
 import com.mandala.webclient.interfaces.RequestInterface;
-import com.mandala.webclient.testing.model.ResponseGenre;
+import com.mandala.test.model.ResponseGenre;
 
 /**
  * Created by just_ on 01/05/2017.

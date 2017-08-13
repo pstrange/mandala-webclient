@@ -1,4 +1,4 @@
-package com.mandala.webclient.testing.model;
+package com.mandala.test.model;
 
 import com.google.gson.annotations.Expose;
 

@@ -1,4 +1,4 @@
-package com.mandala.webclient.testing;
+package com.mandala.test;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,12 +9,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mandala.webclient.R;
+import com.mandala.test.model.ResponseGenre;
 import com.mandala.webclient.client.Dispacher;
 import com.mandala.webclient.client.WebClient;
-import com.mandala.webclient.interfaces.ClientConfigs;
-import com.mandala.webclient.interfaces.RequestConfigs;
-import com.mandala.webclient.model.ResponseInfo;
-import com.mandala.webclient.testing.model.ResponseGenre;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
