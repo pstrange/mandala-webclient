@@ -1,9 +1,11 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+group = 'com.github.pstrange'
 
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
-    defaultPublishConfig "debug"
+
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 25
