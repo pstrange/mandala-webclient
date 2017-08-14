@@ -10,8 +10,6 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        project.archivesBaseName = "mandala-webclient"
-        setProperty("archivesBaseName", "${archivesBaseName}-$versionName")
     }
     buildTypes {
         release {
@@ -28,5 +26,4 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.0.1'
     testCompile 'junit:junit:4.12'
-    compile project(":mandalawebclient")
 }
